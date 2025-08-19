@@ -23,7 +23,7 @@ document.getElementById("local-date").innerText = currentDate;
 document.getElementById("local-time").innerText = currentTime;
 
 function callApi() {
-    fetch(`http://api.weatherapi.com/v1/forecast.json?key=d183496ef2c04b47b9270328251308&q=${document.getElementById("txtsearch").value}&days=7&aqi=no&alerts=no`)
+    fetch(`https://api.weatherapi.com/v1/forecast.json?key=d183496ef2c04b47b9270328251308&q=${document.getElementById("txtsearch").value}&days=7&aqi=no&alerts=no`)
 
         .then(responce => responce.json())
         .then(data => {
