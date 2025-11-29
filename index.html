@@ -1,12 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="Assets/css/Style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
-    
+  <nav class="navbar navbar-expand-lg px-3">
+    <a class="navbar-brand" href="#">WeatherApp</a>
+    <div class="ms-auto">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" id="txtsearch" type="search" placeholder="Search city..." aria-label="Search">
+        <button type="button" class="btn btn-warning" onclick="callApi()">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+  <div class="container py-4">
+
+    <div class="weather-card p-4 text-center mb-4">
+      <h1 id="location"><span id="city">Colombo</span>, <span id="country"> Sri Lanka</span>
+
+      </h1>
+      <p id="local-date"></p>
+      <p id="local-time"></p>
+      <div>
+        <img src="Assets/production/fill/all/clear-day.svg" alt="Weather Icon" class="icon"
+          id="condition-icon">
+        <span id="condition">Clear Day</span>
+      </div>
+      <h2 class="mt-2">
+        <span id="temp-c">30</span>°C/
+        <span id="temp-f">86</span>°F
+      </h2>
+
+      <p>Feels like: <span id="feels-like">32</span>°C</p>
+      <div class="row g-3 text-center mt-3">
+        <div class="col-6 col-md-3"><strong>Wind</strong>: <span id="wind-kph">15</span> KPH / <span
+            id="wind-mph">9</span> MPH</div>
+        <div class="col-6 col-md-3"><strong>Humidity</strong>: <span id="humidity">65</span>%</div>
+        <div class="col-6 col-md-3"><strong>Cloud</strong>: <span id="cloud-cover">40</span>%</div>
+        <div class="col-6 col-md-3"><strong>UV</strong>: <span id="uv-index">5</span></div>
+        <div class="col-6 col-md-3"><strong>Pressure</strong>: <span id="pressure">1012 </span>hPa</div>
+        <div class="col-6 col-md-3"><strong>Visibility</strong>: <span id="visibility">10 </span>km</div>
+        <div class="col-6 col-md-3"><strong>Wind Dir</strong>: <span id="wind-dir">NW</span></div>
+        <div class="col-6 col-md-3"><strong>Last Update</strong>: <span id="last-updated">12:40 PM</span></div>
+      </div>
+    </div>
+
+    <h3 class="mb-3 section-title">Hourly Forecast</h3>
+    <div class="d-flex overflow-auto gap-3 py-2">
+      <div class="forecast-card text-center" data-aos="zoom-in">
+
+        <div id="hour-1">1 PM</div>
+        <img src="Assets/production/fill/all/partly-cloudy-day.svg" class="icon" id="hour-icon-1" alt="Sunny">
+        <div id="hour-cond-1">Sunny</div>
+        <span id="hour-temp-1">31</span>°C
+
+      </div>
+      <div class="forecast-card text-center" data-aos="zoom-in">
+
+        <div id="hour-2">2 PM</div>
+        <img src="Assets/production/fill/all/drizzle.svg" class="icon" id="hour-icon-2" alt="Cloudy">
+        <div id="hour-cond-2">Cloudy</div>
+        <span id="hour-temp-2">31</span>°C
+
+      </div>
+      <div class="forecast-card text-center" data-aos="zoom-in">
+
+        <div id="hour-3">3 PM</div>
+        <img src="Assets/production/fill/all/partly-cloudy-night-drizzle.svg" class="icon" id="hour-icon-3" alt="Rain">
+        <div id="hour-cond-3">Rain</div>
+        <span id="hour-temp-3">31</span>°C
+
+      </div>
+      <div class="forecast-card text-center" data-aos="zoom-in">
+       
+        <div id="hour-4">4 PM</div>
+        <img src="Assets/production/fill/all/partly-cloudy-night.svg" class="icon" id="hour-icon-4" alt="Storm">
+        <div id="hour-cond-4">Storm</div>
+        <span id="hour-temp-4">31</span>°C
+      
+      </div>
+      <div class="forecast-card text-center" data-aos="zoom-in">
+      
+        <div id="hour-5">5 PM</div>
+        <img src="Assets/production/fill/all/partly-cloudy-day.svg"; class="icon" id="hour-icon-5" alt="Sunny">
+        <div id="hour-cond-5">Sunny</div>
+        <span id="hour-temp-5">31</span>°C
+      
+      </div>
+      <div class="forecast-card text-center" data-aos="zoom-in">
+     
+        <div id="hour-6">6 PM</div>
+        <img src="Assets/production/fill/all/clear-night.svg"; class="icon" id="hour-icon-6" alt="Sunny">
+        <div id="hour-cond-6">Sunny</div>
+        <span id="hour-temp-6">31</span>°C
+     
+      </div>
+      <div class="forecast-card text-center" data-aos="zoom-in">
+     
+        <div id="hour-7">7 PM</div>
+        <img src="Assets/production/fill/all/cloudy.svg" class="icon" id="hour-icon-7" alt="Sunny">
+        <div id="hour-cond-7">Sunny</div>
+        <span id="hour-temp-7">31</span>°C
+     
+      </div>
+      
+      
+      
+    </div>
+
+    <h3 class="mt-5 mb-3 section-title">Daily Forecast</h3>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="forecast-card text-center" data-aos="zoom-in">
+          <div id="day-1">Monday</div>
+          <img src="Assets/production/fill/all/rain.svg" class="icon" id="day-icon-1" alt="Rain">
+          <div id="day-cond-1">Rain</div>
+          <div>Average: <span id="day-avg-1">28</span>°C</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="forecast-card text-center" data-aos="zoom-in">
+          <div id="day-2">Tuesday</div>
+          <img src="Assets/production/fill/all/partly-cloudy-night-drizzle.svg" class="icon" id="day-icon-2" alt="Sunny">
+          <div id="day-cond-2">Sunny</div>
+          <div>Average: <span id="day-avg-2">28</span>°C</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="forecast-card text-center" data-aos="zoom-in">
+          <div id="day-3">Wednesday</div>
+          <img src="Assets/production/fill/all/fog-night.svg" class="icon" id="day-icon-3" alt="Cloudy">
+          <div id="day-cond-3">Cloudy</div>
+          <div>Average: <span id="day-avg-3">28</span>°C</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="forecast-card text-center" data-aos="zoom-in">
+          <div id="day-4">Thursday</div>
+          <img src="Assets/production/fill/all/thunderstorms-day-rain.svg" class="icon" id="day-icon-4" alt="Storm">
+          <div id="day-cond-4">Storm</div>
+          <div>Average: <span id="day-avg-4">28</span>°C</div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="forecast-card text-center" data-aos="zoom-in">
+          <div id="day-5">Friday</div>
+          <img src="https://cdn-icons-png.flaticon.com/512/1146/1146869.png" class="icon" id="day-icon-5" alt="Storm">
+          <div id="day-cond-5">Storm</div>
+          <div>Average: <span id="day-avg-5">28</span>°C</div>
+      </div>
+
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="forecast-card text-center" data-aos="zoom-in">
+          <div id="day-6">Saturday</div>
+          <img src="https://cdn-icons-png.flaticon.com/512/1146/1146869.png" class="icon" id="day-icon-6" alt="Storm">
+          <div id="day-cond-6">Storm</div>
+          <div>Average: <span id="day-avg-6">28</span>°C</div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="forecast-card text-center" data-aos="zoom-in">
+          <div id="day-7">Sunday</div>
+          <img src="https://cdn-icons-png.flaticon.com/512/1146/1146869.png" class="icon" id="day-icon-7" alt="Storm">
+          <div id="day-cond-7">Storm</div>
+          <div>Average: <span id="day-avg-7">28</span>°C</div>
+        </div>
+      </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="Assets/js/app.js"></script>
+  </div>
+  <footer class="footer text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-1">🌤️ WeatherApp — Your daily weather companion</p>
+      <p class="mb-0">&copy; 2025 WeatherApp. All Rights Reserved. Shashith Malshan</p>
+    </div>
+  </footer>
+
 </body>
+
 </html>

@@ -1,0 +1,56 @@
+body {
+  background: linear-gradient(to bottom, #00509D 33%, #FDC500 33%, #ffffff 34%);
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #00509D;
+}
+
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 20px;
+}
+
+.weather-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-card {
+  min-width: 150px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+}
+
+.section-title {
+  color: #00509D;
+  font-weight: bold;
+}
+
+.footer {
+  background-color: #00509D;
+  color: white;
+  font-size: 14px;
+  border-top: 4px solid #FDC500;
+  
+}
+
+.footer p {
+  margin: 0;
+}
+footer .container{
+  padding: 40px;
+}
